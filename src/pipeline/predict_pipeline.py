@@ -214,7 +214,7 @@ class PredictPipeline:
             
         except Exception as e:
             logging.error(f"✗ Validation error: {str(e)}")
-            raise CustomException(e, sys)
+            raise CustomException(str(e), sys)
     
     def transform_features(self, features):
         """
@@ -287,7 +287,7 @@ class PredictPipeline:
             
         except Exception as e:
             logging.error(f"✗ Error during transformation: {str(e)}")
-            raise CustomException(e, sys)
+            raise CustomException(str(e), sys)
     
     def generate_predictions(self, data_scaled):
         """
@@ -354,7 +354,7 @@ class PredictPipeline:
             logging.error(f"✗ Error during prediction: {str(e)}")
             logging.error(f"  Data shape: {data_scaled.shape if hasattr(data_scaled, 'shape') else 'unknown'}")
             logging.error(f"  Model type: {type(self.model).__name__ if self.model else 'None'}")
-            raise CustomException(e, sys)
+            raise CustomException(str(e), sys)
     
     def format_results(self, predictions, original_data=None):
         """
@@ -391,7 +391,7 @@ class PredictPipeline:
             
         except Exception as e:
             logging.error(f"✗ Error formatting results: {str(e)}")
-            raise CustomException(e, sys)
+            raise CustomException(str(e), sys)
     
     def predict_single(self, features):
         """
@@ -434,7 +434,7 @@ class PredictPipeline:
             
         except Exception as e:
             logging.error(f"\n✗ Prediction failed: {str(e)}")
-            raise CustomException(e, sys)
+            raise CustomException(str(e), sys)
     
     def predict_batch(self, features):
         """
@@ -477,7 +477,7 @@ class PredictPipeline:
             
         except Exception as e:
             logging.error(f"\n✗ Batch prediction failed: {str(e)}")
-            raise CustomException(e, sys)
+            raise CustomException(str(e), sys)
     
     def predict(self, features):
         """
@@ -585,7 +585,7 @@ class CustomData:
             
         except Exception as e:
             logging.error(f"✗ Error extracting temporal features: {str(e)}")
-            raise CustomException(e, sys)
+            raise CustomException(str(e), sys)
     
     def create_quantity_category(self):
         """
@@ -691,7 +691,7 @@ class CustomData:
             
         except Exception as e:
             logging.error(f"✗ Error converting to dataframe: {str(e)}")
-            raise CustomException(e, sys)
+            raise CustomException(str(e), sys)
 
 
 # ============================================================================

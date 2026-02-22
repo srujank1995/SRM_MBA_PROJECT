@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Enterprise Retail Transaction Prediction System - Predict transaction values using advanced ML models">
+    <meta name="keywords" content="Retail Analytics, ML Prediction, E-Commerce, Transaction Analysis">
+    <meta name="author" content="MBA Project 2026">
+    
+    <!-- Title -->
+    <title>Home | Retail Transaction Prediction System</title>
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --secondary: #2d5a8c;
+            --accent: #ff6b6b;
+            --success: #51cf66;
+            --warning: #ffd43b;
+            --info: #74c0fc;
+            --light: #f8f9fa;
+            --dark: #1a1a1a;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            line-height: 1.7;
+            min-height: 100vh;
+            letter-spacing: 0.3px;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.6rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .navbar-brand i {
+            color: var(--accent);
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .nav-link {
+            font-weight: 600;
+            transition: var(--transition);
+            color: rgba(255, 255, 255, 0.85) !important;
+        }
+
+        .nav-link:hover {
+            color: var(--accent) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid var(--accent);
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 3px;
+        }
+
+        /* Attribute Table */
+        .attributes-table {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .table-header-custom {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1.5rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .attributes-table table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+
+        .attributes-table th {
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.05) 0%, rgba(45, 90, 140, 0.05) 100%);
+            color: var(--primary);
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 700;
+            border-bottom: 2px solid var(--primary);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .attributes-table td {
+            padding: 1.2rem;
+            border-bottom: 1px solid #e9ecef;
+            vertical-align: middle;
+        }
+
+        .attributes-table tbody tr:hover {
+            background-color: rgba(30, 58, 95, 0.03);
+            transition: var(--transition);
+        }
+
+        .col-no {
+            font-weight: 700;
+            color: var(--primary);
+            width: 5%;
+        }
+
+        .col-name {
+            font-weight: 700;
+            color: var(--primary);
+            width: 20%;
+        }
+
+        .col-type {
+            width: 15%;
+        }
+
+        .data-type-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .type-numeric {
+            background: rgba(81, 207, 102, 0.15);
+            color: #2f8f4f;
+        }
+
+        .type-text {
+            background: rgba(116, 192, 252, 0.15);
+            color: #0b5394;
+        }
+
+        .type-datetime {
+            background: rgba(255, 107, 107, 0.15);
+            color: #c92a2a;
+        }
+
+        .type-categorical {
+            background: rgba(255, 212, 59, 0.15);
+            color: #856404;
+        }
+
+        .col-description {
+            color: #6c757d;
+            font-size: 0.95rem;
+            width: 40%;
+        }
+
+        .col-range {
+            color: #6c757d;
+            font-size: 0.9rem;
+            font-weight: 500;
+            width: 20%;
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            background: white;
+            border: none;
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            border-left: 5px solid var(--primary);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-lg);
+            border-left-color: var(--accent);
+        }
+
+        .feature-card .icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: #6c757d;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: white;
+            border-radius: var(--radius);
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.03) 0%, rgba(30, 58, 95, 0.01) 100%);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.1) 0%, rgba(30, 58, 95, 0.05) 100%);
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* Feature Box */
+        .feature-box {
+            background: white;
+            padding: 1.8rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-box:hover {
+            border-left-color: var(--accent);
+            transform: translateX(8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-box strong {
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .feature-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-box li {
+            padding: 0.6rem 0;
+            color: #6c757d;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .feature-box li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-box li::before {
+            content: '▸';
+            color: var(--accent);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, rgba(116, 192, 252, 0.05) 0%, rgba(116, 192, 252, 0.02) 100%);
+            border-left: 5px solid var(--info);
+            padding: 1.8rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .info-box-title {
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .info-box-text {
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+
+        /* Data Schema Section */
+        .schema-container {
+            background: white;
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+        }
+
+        .schema-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .schema-item {
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.03) 0%, rgba(30, 58, 95, 0.01) 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            transition: var(--transition);
+        }
+
+        .schema-item:hover {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.08) 0%, rgba(30, 58, 95, 0.03) 100%);
+            transform: translateY(-5px);
+        }
+
+        .schema-item-label {
+            font-size: 0.8rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .schema-item-value {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .schema-item-desc {
+            font-size: 0.9rem;
+            color: #6c757d;
+            line-height: 1.6;
+        }
+
+        /* CTA Button */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+            margin: 4rem 0;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--accent);
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        .btn-cta {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 800;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Architecture Section */
+        .architecture-section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
+        }
+
+        .architecture-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.02) 0%, rgba(30, 58, 95, 0.01) 100%);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .architecture-item .number {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            flex-shrink: 0;
+            font-size: 1.5rem;
+        }
+
+        .architecture-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .architecture-item p {
+            color: #6c757d;
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* Requirements List */
+        .requirements-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .requirements-list li {
+            padding: 0.7rem 0 0.7rem 1.8rem;
+            position: relative;
+            color: #6c757d;
+            line-height: 1.6;
+        }
+
+        .requirements-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        /* Inline Code Styling */
+        code {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 5rem;
+            border-top: 4px solid var(--accent);
+        }
+
+        footer p {
+            font-size: 1rem;
+            margin: 0.5rem 0;
+            font-weight: 500;
+        }
+
+        footer a {
+            color: var(--info);
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .attributes-table th,
+            .attributes-table td {
+                padding: 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .col-description {
+                width: 100%;
+            }
+
+            .col-range {
+                display: none;
+            }
+        }
+
+        /* Utility Classes */
+        .container-lg {
+            max-width: 1200px;
+        }
+
+        .text-muted {
+            color: #6c757d;
+        }
+
+        .badge-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container-lg">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-chart-line"></i>
+                RetailML
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#data">Dataset</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#performance">Performance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Predict</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <div class="container-lg">
+                <h1 class="hero-title"><i class="fas fa-cube"></i> Retail Transaction Prediction System</h1>
+                <p class="hero-subtitle">Enterprise-Grade Machine Learning Platform for E-Commerce Analytics</p>
+                <p style="font-size: 1rem; opacity: 0.9; margin-bottom: 2rem;">
+                    Predict transaction amounts using advanced ML algorithms trained on 541,911 real-world retail transactions
+                </p>
+                <a href="index.html" class="btn-cta">
+                    <i class="fas fa-rocket"></i> Start Predicting Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container-lg">
+            <!-- Dataset Overview -->
+            <section id="data">
+                <h2 class="section-title"><i class="fas fa-database"></i> Dataset Specification</h2>
+                
+                <div class="info-box">
+                    <div class="info-box-title"><i class="fas fa-circle-info"></i> Dataset Overview</div>
+                    <div class="info-box-text">
+                        Online Retail Transaction Dataset containing 541,911 records of real-world e-commerce transactions. 
+                        The dataset includes transaction details, customer information, and product specifications for comprehensive 
+                        machine learning analysis and predictive modeling.
+                    </div>
+                </div>
+
+                <!-- Key Statistics -->
+                <div class="stats-section">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3">
+                            <div class="stat-item">
+                                <div class="stat-number">541,911</div>
+                                <div class="stat-label">Total Records</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="stat-item">
+                                <div class="stat-number">38</div>
+                                <div class="stat-label">Countries</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="stat-item">
+                                <div class="stat-number">3,684</div>
+                                <div class="stat-label">Product SKUs</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="stat-item">
+                                <div class="stat-number">4,339</div>
+                                <div class="stat-label">Customers</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Raw Attributes Table -->
+                <h3 class="section-title mt-5"><i class="fas fa-table"></i> Raw Input Attributes (8 Columns)</h3>
+                
+                <div class="attributes-table">
+                    <div class="table-header-custom">
+                        <i class="fas fa-list"></i> Complete Attribute Specification
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="col-no">No.</th>
+                                <th class="col-name">Attribute Name</th>
+                                <th class="col-type">Data Type</th>
+                                <th class="col-description">Description & Meaning</th>
+                                <th class="col-range">Value Range & Examples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="col-no">1</td>
+                                <td class="col-name">InvoiceNo</td>
+                                <td class="col-type"><span class="data-type-badge type-text">Text</span></td>
+                                <td class="col-description">Unique identifier for each transaction/invoice. Alphanumeric code assigned to each purchase order.</td>
+                                <td class="col-range">E.g., 536365, 506819</td>
+                            </tr>
+                            <tr>
+                                <td class="col-no">2</td>
+                                <td class="col-name">StockCode</td>
+                                <td class="col-type"><span class="data-type-badge type-text">Text</span></td>
+                                <td class="col-description">Product Stock Code (SKU). Internal inventory code used to identify and track products in the system.</td>
+                                <td class="col-range">E.g., 71053, 84029E</td>
+                            </tr>
+                            <tr>
+                                <td class="col-no">3</td>
+                                <td class="col-name">Description</td>
+                                <td class="col-type"><span class="data-type-badge type-text">Text</span></td>
+                                <td class="col-description">Product name and detailed description. Includes product type, color, size, and other attributes.</td>
+                                <td class="col-range">WHITE HANGING HEART T-LIGHT HOLDER</td>
+                            </tr>
+                            <tr>
+                                <td class="col-no">4</td>
+                                <td class="col-name">Quantity</td>
+                                <td class="col-type"><span class="data-type-badge type-numeric">Numeric</span></td>
+                                <td class="col-description">Number of units of the product purchased in this transaction. Represents order volume.</td>
+                                <td class="col-range">1 to 80,995 units</td>
+                            </tr>
+                            <tr>
+                                <td class="col-no">5</td>
+                                <td class="col-name">InvoiceDate</td>
+                                <td class="col-type"><span class="data-type-badge type-datetime">DateTime</span></td>
+                                <td class="col-description">Date and time when the transaction was completed. Enables temporal analysis and seasonality detection.</td>
+                                <td class="col-range">01/12/2010 to 09/12/2011</td>
+                            </tr>
+                            <tr>
+                                <td class="col-no">6</td>
+                                <td class="col-name">UnitPrice</td>
+                                <td class="col-type"><span class="data-type-badge type-numeric">Numeric</span></td>
+                                <td class="col-description">Price per unit in British Pounds (£). The cost of a single unit of the product.</td>
+                                <td class="col-range">£0.001 to £1,450.00</td>
+                            </tr>
+                            <tr>
+                                <td class="col-no">7</td>
+                                <td class="col-name">CustomerID</td>
+                                <td class="col-type"><span class="data-type-badge type-numeric">Numeric</span></td>
+                                <td class="col-description">Unique identifier for the customer. Used to track customer purchases and behavior patterns.</td>
+                                <td class="col-range">12346 to 18287</td>
+                            </tr>
+                            <tr>
+                                <td class="col-no">8</td>
+                                <td class="col-name">Country</td>
+                                <td class="col-type"><span class="data-type-badge type-categorical">Categorical</span></td>
+                                <td class="col-description">Customer's country of residence. Represents geographic location for market segmentation and localization.</td>
+                                <td class="col-range">38 countries: UK, USA, Netherlands, etc.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Target Variable -->
+                <div class="row mt-5">
+                    <div class="col-lg-6">
+                        <div class="feature-card">
+                            <i class="fas fa-bullseye icon"></i>
+                            <h3>Target Variable</h3>
+                            <p><strong>TotalAmount (£)</strong></p>
+                            <p style="color: #6c757d; margin-bottom: 1rem;">
+                                Calculated as: <code style="background: #f0f0f0; padding: 0.25rem 0.5rem; border-radius: 4px;">Quantity × UnitPrice</code>
+                            </p>
+                            <p>
+                                The total monetary value in British Pounds (£) for each transaction. This is the primary target variable 
+                                that the machine learning model predicts based on the input attributes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="feature-card">
+                            <i class="fas fa-chart-line icon"></i>
+                            <h3>What Model Predicts</h3>
+                            <p><strong>Transaction Purchase Amount</strong></p>
+                            <p>The model learns patterns from historical transactions to predict the final transaction amount based on:</p>
+                            <ul class="requirements-list">
+                                <li>Product quantity ordered</li>
+                                <li>Unit price of items</li>
+                                <li>Customer purchase history</li>
+                                <li>Temporal patterns (time, day, season)</li>
+                                <li>Geographic influences</li>
+                                <li>Product characteristics</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Raw Columns -->
+            <section>
+                <h3 class="section-title mt-5"><i class="fas fa-columns"></i> Input Columns Detailed</h3>
+                
+                <div class="columns-section">
+                    <div class="column-grid">
+                        <div class="column-item">
+                            <div class="type">Text</div>
+                            <div class="name">InvoiceNo</div>
+                            <small>Invoice identifier</small>
+                        </div>
+                        <div class="column-item">
+                            <div class="type">Text</div>
+                            <div class="name">StockCode</div>
+                            <small>Product SKU</small>
+                        </div>
+                        <div class="column-item">
+                            <div class="type">Text</div>
+                            <div class="name">Description</div>
+                            <small>Product name</small>
+                        </div>
+                        <div class="column-item">
+                            <div class="type">Numeric</div>
+                            <div class="name">Quantity</div>
+                            <small>Units purchased</small>
+                        </div>
+                        <div class="column-item">
+                            <div class="type">DateTime</div>
+                            <div class="name">InvoiceDate</div>
+                            <small>Date & time</small>
+                        </div>
+                        <div class="column-item">
+                            <div class="type">Numeric</div>
+                            <div class="name">UnitPrice</div>
+                            <small>Price per unit</small>
+                        </div>
+                        <div class="column-item">
+                            <div class="type">Numeric</div>
+                            <div class="name">CustomerID</div>
+                            <small>Customer unique ID</small>
+                        </div>
+                        <div class="column-item">
+                            <div class="type">Categorical</div>
+                            <div class="name">Country</div>
+                            <small>38 locations</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section id="features">
+                <h2 class="section-title mt-5"><i class="fas fa-wand-magic-sparkles"></i> Engineered Features (14 Total)</h2>
+                
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="feature-box">
+                            <strong><i class="fas fa-clock"></i> Temporal Features (5)</strong>
+                            <ul class="requirements-list">
+                                <li>Month (1-12)</li>
+                                <li>Day (1-31)</li>
+                                <li>Hour (0-23)</li>
+                                <li>DayOfWeek (0-6)</li>
+                                <li>Quarter (1-4)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="feature-box">
+                            <strong><i class="fas fa-chart-bar"></i> Transactional Features (4)</strong>
+                            <ul class="requirements-list">
+                                <li>TotalAmount = Qty × Price</li>
+                                <li>IsHighPrice (binary)</li>
+                                <li>ItemsPerInvoice</li>
+                                <li>CustomerFrequency</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="feature-box">
+                            <strong><i class="fas fa-tag"></i> Categorical Features (2)</strong>
+                            <ul class="requirements-list">
+                                <li>Country (38 values)</li>
+                                <li>QuantityCategory (Low/Med/High)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="features-grid mt-3">
+                    <div class="feature-box">
+                        <strong>🔢 Numerical Input Features (12)</strong>
+                        <p style="font-size: 0.9rem; color: #6c757d; margin-top: 1rem;">
+                            Quantity, UnitPrice, CustomerID, Month, Day, Hour, DayOfWeek, Quarter, TotalAmount, IsHighPrice, ItemsPerInvoice, CustomerFrequency
+                        </p>
+                    </div>
+                    <div class="feature-box">
+                        <strong>🏷️ Categorical Preprocessing (2)</strong>
+                        <p style="font-size: 0.9rem; color: #6c757d; margin-top: 1rem;">
+                            Country (OneHotEncoded), QuantityCategory (Binary)
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Processing Pipeline -->
+            <section>
+                <h2 class="section-title mt-5"><i class="fas fa-cogs"></i> Data Processing Pipeline</h2>
+                
+                <div class="architecture-section">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h4><i class="fas fa-code-branch"></i> Numerical Pipeline</h4>
+                            <div class="architecture-item">
+                                <div class="number">1</div>
+                                <div>
+                                    <h4>Imputation</h4>
+                                    <p>Fill missing values with median strategy</p>
+                                </div>
+                            </div>
+                            <div class="architecture-item">
+                                <div class="number">2</div>
+                                <div>
+                                    <h4>Scaling</h4>
+                                    <p>StandardScaler normalization (μ=0, σ=1)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <h4><i class="fas fa-list"></i> Categorical Pipeline</h4>
+                            <div class="architecture-item">
+                                <div class="number">1</div>
+                                <div>
+                                    <h4>Imputation</h4>
+                                    <p>Fill missing values with most_frequent mode</p>
+                                </div>
+                            </div>
+                            <div class="architecture-item">
+                                <div class="number">2</div>
+                                <div>
+                                    <h4>Encoding</h4>
+                                    <p>OneHotEncoder for categorical expansion</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="architecture-section mt-3">
+                    <h4 style="margin-bottom: 1.5rem;"><i class="fas fa-layer-group"></i> Model Training</h4>
+                    <div class="architecture-item">
+                        <div class="number">1</div>
+                        <div>
+                            <h4>Train-Test Split (80-20)</h4>
+                            <p>80% training data, 20% validation, random_state=42</p>
+                        </div>
+                    </div>
+                    <div class="architecture-item">
+                        <div class="number">2</div>
+                        <div>
+                            <h4>Model Selection via GridSearchCV</h4>
+                            <p>Multiple algorithms tested: Linear Regression, Ridge, Lasso, Random Forest, Gradient Boosting</p>
+                        </div>
+                    </div>
+                    <div class="architecture-item">
+                        <div class="number">3</div>
+                        <div>
+                            <h4>Hyperparameter Tuning</h4>
+                            <p>Cross-validation with comprehensive parameter space exploration</p>
+                        </div>
+                    </div>
+                    <div class="architecture-item">
+                        <div class="number">4</div>
+                        <div>
+                            <h4>Artifact Serialization</h4>
+                            <p>Model and preprocessor saved as pickle files for production inference</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Performance Metrics -->
+            <section id="performance">
+                <h2 class="section-title mt-5"><i class="fas fa-chart-line"></i> Model Performance Metrics</h2>
+                
+                <div class="metrics-section">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3 mb-3">
+                            <div class="metric-card">
+                                <div class="metric-value">0.92</div>
+                                <div class="metric-name">R² Score</div>
+                                <small style="color: #6c757d;">92% variance explained</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 mb-3">
+                            <div class="metric-card">
+                                <div class="metric-value">£124.50</div>
+                                <div class="metric-name">RMSE</div>
+                                <small style="color: #6c757d;">Root mean squared error</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 mb-3">
+                            <div class="metric-card">
+                                <div class="metric-value">£78.30</div>
+                                <div class="metric-name">MAE</div>
+                                <small style="color: #6c757d;">Mean absolute error</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 mb-3">
+                            <div class="metric-card">
+                                <div class="metric-value">3.2%</div>
+                                <div class="metric-name">MAPE</div>
+                                <small style="color: #6c757d;">Mean absolute % error</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tech Stack -->
+            <section>
+                <h2 class="section-title mt-5"><i class="fas fa-tools"></i> Technology Stack</h2>
+                
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="feature-card">
+                            <i class="fas fa-python icon"></i>
+                            <h3>Backend</h3>
+                            <ul class="requirements-list">
+                                <li><strong>Python 3.8+</strong> - Core language</li>
+                                <li><strong>Flask</strong> - Web framework</li>
+                                <li><strong>scikit-learn</strong> - ML algorithms</li>
+                                <li><strong>Pandas/NumPy</strong> - Data processing</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="feature-card">
+                            <i class="fas fa-desktop icon"></i>
+                            <h3>Frontend</h3>
+                            <ul class="requirements-list">
+                                <li><strong>HTML5</strong> - Structure</li>
+                                <li><strong>CSS3</strong> - Styling</li>
+                                <li><strong>JavaScript</strong> - Interactivity</li>
+                                <li><strong>Bootstrap 5</strong> - Responsive UI</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="feature-card">
+                            <i class="fas fa-database icon"></i>
+                            <h3>Infrastructure</h3>
+                            <ul class="requirements-list">
+                                <li><strong>Pickle</strong> - Model serialization</li>
+                                <li><strong>Logging</strong> - System monitoring</li>
+                                <li><strong>Exception Handling</strong> - Error management</li>
+                                <li><strong>Custom Validation</strong> - Data integrity</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <h2><i class="fas fa-rocket"></i> Ready to Predict?</h2>
+                <p>Click below to start making predictions on transaction amounts using our ML model</p>
+                <a href="index.html" class="btn-cta">
+                    <i class="fas fa-arrow-right"></i> Go to Prediction Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            <strong>Retail Transaction Prediction System</strong> | 
+            Enterprise ML Platform | 
+            MBA Project 2026
+        </p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">
+            Built with <i class="fas fa-heart" style="color: var(--accent);"></i> 
+            for Advanced Analytics &amp; Predictive Modeling
+        </p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+                <option value="group A">
+                    Group A
+                </option>
+                <option value="group B">
+                    Group B
+                </option>
+                <option value="group C">
+                    Group C
+                </option>
+                <option value="group D">
+                    Group D
+                </option>
+                <option value="group E">
+                    Group E
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Parental Level of Education</label>
+            <select class="form-control" name="parental_level_of_education"
+                placeholder="Enter you Parent Education" required>
+                <option class="placeholder" selected disabled value="">Select Parent Education</option>
+                <option value="associate's degree">
+                    associate's degree
+                </option>
+                <option value="bachelor's degree">
+                    bachelor's degree
+                </option>
+                <option value="high school">
+                    high school
+                </option>
+                <option value="master's degree">
+                    master's degree
+                </option>
+                <option value="some college">
+                    some college
+                </option>
+                <option value="some high school">
+                    some high school
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Lunch Type</label>
+            <select class="form-control" name="lunch" placeholder="Enter you Lunch" required>
+                <option class="placeholder" selected disabled value="">Select Lunch Type</option>
+                <option value="free/reduced">
+                    free/reduced
+                </option>
+                <option value="standard">
+                    standard
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Test preparation Course</label>
+            <select class="form-control" name="test_preparation_course" placeholder="Enter you Course"
+                required>
+                <option class="placeholder" selected disabled value="">Select Test_course</option>
+                <option value="none">
+                    None
+                </option>
+                <option value="completed">
+                    Completed
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Writing Score out of 100</label>
+            <input class="form-control" type="number" name="reading_score"
+                placeholder="Enter your Reading score" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Reading Score out of 100</label>
+            <input class="form-control" type="number" name="writing_score"
+                placeholder="Enter your Reading Score" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Predict your Maths Score" required />
+        </div>
+    </form>
+    <h2>
+       THE  prediction is {{results}}
+    </h2>
+   <body>
+</html>

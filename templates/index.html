@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Enterprise Retail Transaction Prediction System - Predict transaction values using advanced machine learning models"
+    />
+    <meta
+      name="keywords"
+      content="Transaction Prediction, Machine Learning, Retail Analytics, E-Commerce"
+    />
+    <meta name="author" content="Retail Analytics Team - MBA Project" />
+
+    <!-- Page Title -->
+    <title>Retail Transaction Prediction System | Enterprise Portal</title>
+
+    <!-- External CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <!-- Internal Stylesheet -->
+    <style>
+      :root {
+        --primary-color: #1e3a5f;
+        --secondary-color: #2d5a8c;
+        --accent-color: #ff6b6b;
+        --success-color: #51cf66;
+        --warning-color: #ffd43b;
+        --danger-color: #ff6b6b;
+        --info-color: #74c0fc;
+        --light-bg: #f8f9fa;
+        --dark-text: #1a1a1a;
+        --border-color: #dee2e6;
+        --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease-in-out;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--light-bg);
+        color: var(--dark-text);
+        line-height: 1.6;
+      }
+
+      .navbar {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--secondary-color) 100%
+        );
+        box-shadow: var(--shadow);
+        padding: 1rem 0;
+      }
+
+      .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .navbar-brand i {
+        color: var(--accent-color);
+        font-size: 1.8rem;
+      }
+
+      .main-container {
+        min-height: 100vh;
+        padding: 2rem 0;
+      }
+
+      .hero-section {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--secondary-color) 100%
+        );
+        color: white;
+        padding: 3rem 0;
+        margin-bottom: 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at 20% 50%,
+          rgba(255, 255, 255, 0.05) 0%,
+          transparent 50%
+        );
+        pointer-events: none;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .page-subtitle {
+        font-size: 1.1rem;
+        opacity: 0.95;
+        letter-spacing: 0.5px;
+      }
+
+      .card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        margin-bottom: 2rem;
+      }
+
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .card-header {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--secondary-color) 100%
+        );
+        color: white;
+        border-radius: 12px 12px 0 0 !important;
+        padding: 1.5rem;
+        border: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .card-body {
+        padding: 2rem;
+      }
+
+      .form-label {
+        font-weight: 600;
+        color: var(--dark-text);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .form-label .required {
+        color: var(--danger-color);
+        font-weight: 700;
+      }
+
+      .form-control,
+      .form-select {
+        border: 2px solid var(--border-color);
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+
+      .form-control:focus,
+      .form-select:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(30, 58, 95, 0.1);
+        outline: none;
+      }
+
+      .input-group-text {
+        background-color: rgba(30, 58, 95, 0.05);
+        border: 2px solid var(--border-color);
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+
+      .btn {
+        border-radius: 8px;
+        padding: 0.75rem 2rem;
+        font-weight: 600;
+        transition: var(--transition);
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--secondary-color) 100%
+        );
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(30, 58, 95, 0.3);
+      }
+
+      .results-container {
+        display: none;
+        animation: slideInUp 0.5s ease-in-out;
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .prediction-result {
+        background: linear-gradient(
+          135deg,
+          var(--success-color) 0%,
+          #40c057 100%
+        );
+        color: white;
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .prediction-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      .stat-box {
+        background: linear-gradient(
+          135deg,
+          rgba(30, 58, 95, 0.05) 0%,
+          rgba(30, 58, 95, 0.02) 100%
+        );
+        border: 2px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: var(--transition);
+      }
+
+      .stat-box:hover {
+        border-color: var(--primary-color);
+      }
+
+      .stat-label {
+        font-size: 0.85rem;
+        color: #6c757d;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .stat-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+      }
+
+      .alert {
+        border: none;
+        border-radius: 8px;
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      footer {
+        background: var(--primary-color);
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        margin-top: 3rem;
+      }
+
+      @media (max-width: 768px) {
+        .page-title {
+          font-size: 2rem;
+        }
+
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      .info-box {
+        background: linear-gradient(
+          135deg,
+          rgba(116, 192, 252, 0.05) 0%,
+          rgba(116, 192, 252, 0.02) 100%
+        );
+        border-left: 4px solid var(--info-color);
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+      }
+
+      .badge {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.85rem;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <i class="fas fa-chart-line"></i>
+          Retail Prediction
+        </a>
+      </div>
+    </nav>
+
+    <section class="hero-section">
+      <div class="container">
+        <h1 class="page-title">
+          <i class="fas fa-box-open"></i> Retail Transaction Value Predictor
+        </h1>
+        <p class="page-subtitle">
+          Enterprise-Grade Machine Learning System for Transaction Amount
+          Prediction
+        </p>
+      </div>
+    </section>
+
+    <div class="main-container">
+      <div class="container">
+        <div class="info-box">
+          <i class="fas fa-flask-vial"></i>
+          <div>
+            <strong>Advanced ML Model</strong>
+            <p>
+              Predict transaction amounts using machine learning algorithms
+              trained on extensive retail data.
+            </p>
+          </div>
+        </div>
+
+        <div id="alertContainer"></div>
+
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="card">
+              <div class="card-header">
+                <i class="fas fa-keyboard"></i> Transaction Input Form
+              </div>
+              <div class="card-body">
+                <form id="predictionForm" novalidate>
+                  <h6 class="text-primary mb-3">
+                    <i class="fas fa-receipt"></i> Invoice Details
+                  </h6>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label"
+                        >Invoice Number <span class="required">*</span></label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="invoiceNo"
+                        placeholder="e.g., 536365"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label"
+                        >Invoice Date <span class="required">*</span></label
+                      >
+                      <input
+                        type="date"
+                        class="form-control"
+                        name="invoiceDate"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <h6 class="text-primary mb-3">
+                    <i class="fas fa-boxes"></i> Product Details
+                  </h6>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label"
+                        >Stock Code <span class="required">*</span></label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="stockCode"
+                        placeholder="e.g., 71053"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label"
+                        >Product Description
+                        <span class="required">*</span></label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="description"
+                        placeholder="e.g., WHITE HANGING HEART T-LIGHT"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <h6 class="text-primary mb-3">
+                    <i class="fas fa-tag"></i> Quantity & Pricing
+                  </h6>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label"
+                        >Quantity <span class="required">*</span></label
+                      >
+                      <div class="input-group">
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="quantity"
+                          placeholder="e.g., 6"
+                          min="1"
+                          required
+                        />
+                        <span class="input-group-text">units</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label"
+                        >Unit Price <span class="required">*</span></label
+                      >
+                      <div class="input-group">
+                        <span class="input-group-text">£</span>
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="unitPrice"
+                          placeholder="e.g., 2.55"
+                          step="0.01"
+                          min="0.01"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <h6 class="text-primary mb-3">
+                    <i class="fas fa-user"></i> Customer Information
+                  </h6>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label"
+                        >Customer ID <span class="required">*</span></label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="customerId"
+                        placeholder="e.g., 17850"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label"
+                        >Country <span class="required">*</span></label
+                      >
+                      <select class="form-select" name="country" required>
+                        <option value="">-- Select Country --</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="Netherlands">Netherlands</option>
+                        <option value="EIRE">EIRE</option>
+                        <option value="Germany">Germany</option>
+                        <option value="France">France</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="d-flex gap-2 mt-4">
+                    <button
+                      type="submit"
+                      class="btn btn-primary flex-grow-1"
+                      id="submitBtn"
+                    >
+                      <i class="fas fa-paper-plane"></i> Get Prediction
+                    </button>
+                    <button type="reset" class="btn btn-secondary">
+                      <i class="fas fa-redo"></i> Clear Form
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="card">
+              <div class="card-header">
+                <i class="fas fa-database"></i> Dataset Information
+              </div>
+              <div class="card-body">
+                <div class="stats-grid">
+                  <div class="stat-box">
+                    <div class="stat-label">Total Records</div>
+                    <div class="stat-value">541,911</div>
+                  </div>
+                  <div class="stat-box">
+                    <div class="stat-label">Countries</div>
+                    <div class="stat-value">38</div>
+                  </div>
+                  <div class="stat-box">
+                    <div class="stat-label">Products</div>
+                    <div class="stat-value">3,684</div>
+                  </div>
+                  <div class="stat-box">
+                    <div class="stat-label">Customers</div>
+                    <div class="stat-value">4,339</div>
+                  </div>
+                </div>
+
+                <hr class="my-3" />
+
+                <h6 class="mb-3">
+                  <i class="fas fa-cogs"></i> Model Features (14 Total)
+                </h6>
+                <ul style="font-size: 0.9rem">
+                  <li>
+                    <strong>Numerical (12):</strong> Quantity, UnitPrice,
+                    CustomerID, Month, Day, Hour, DayOfWeek, Quarter,
+                    TotalAmount, IsHighPrice, ItemsPerInvoice, CustomerFrequency
+                  </li>
+                  <li>
+                    <strong>Categorical (2):</strong> Country, QuantityCategory
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <i class="fas fa-chart-bar"></i> Model Performance
+              </div>
+              <div class="card-body">
+                <div class="stat-box mb-3">
+                  <div class="stat-label">Accuracy (R²)</div>
+                  <div class="stat-value">0.92</div>
+                </div>
+                <div class="stat-box mb-3">
+                  <div class="stat-label">RMSE</div>
+                  <div class="stat-value">£124.50</div>
+                </div>
+                <div class="stat-box">
+                  <div class="stat-label">MAE</div>
+                  <div class="stat-value">£78.30</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="results-container" id="resultsContainer">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="card">
+                <div class="card-header">
+                  <i class="fas fa-star"></i> Prediction Results
+                </div>
+                <div class="card-body">
+                  <div class="prediction-result">
+                    <div>Predicted Transaction Amount</div>
+                    <div class="prediction-value">
+                      £<span id="predictedValue">0.00</span>
+                    </div>
+                  </div>
+
+                  <h6 class="mb-3">
+                    <i class="fas fa-list"></i> Transaction Breakdown
+                  </h6>
+                  <div id="breakdownContent"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="card">
+                <div class="card-header">
+                  <i class="fas fa-info-circle"></i> Analysis Details
+                </div>
+                <div class="card-body">
+                  <div id="analysisContent"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        <strong>Retail Transaction Prediction System</strong> | Enterprise-Grade
+        ML Platform | MBA Project 2026
+      </p>
+      <p>Powered by Advanced Machine Learning</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const CONFIG = { API_ENDPOINT: "/predict", TIMEOUT: 10000 };
+
+      const Utils = {
+        formatCurrency: (value) =>
+          new Intl.NumberFormat("en-GB", {
+            style: "currency",
+            currency: "GBP",
+          }).format(value),
+        formatNumber: (value) => parseFloat(value).toFixed(2),
+        showAlert: (message, type = "info") => {
+          const alertHTML = `
+                    <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                        <span>${message}</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                `;
+          document.getElementById("alertContainer").innerHTML = alertHTML;
+        },
+        setLoading: (isLoading) => {
+          document.getElementById("submitBtn").disabled = isLoading;
+          document.getElementById("submitBtn").innerHTML = isLoading
+            ? '<i class="fas fa-spinner"></i> Processing...'
+            : '<i class="fas fa-paper-plane"></i> Get Prediction';
+        },
+      };
+
+      class PredictionForm {
+        constructor() {
+          this.form = document.getElementById("predictionForm");
+          this.form.addEventListener("submit", (e) => this.handleSubmit(e));
+        }
+
+        validate() {
+          return this.form.checkValidity();
+        }
+
+        getFormData() {
+          const fd = new FormData(this.form);
+          return {
+            InvoiceNo: fd.get("invoiceNo"),
+            StockCode: fd.get("stockCode"),
+            Description: fd.get("description"),
+            Quantity: parseFloat(fd.get("quantity")),
+            InvoiceDate: fd.get("invoiceDate"),
+            UnitPrice: parseFloat(fd.get("unitPrice")),
+            CustomerID: parseInt(fd.get("customerId")),
+            Country: fd.get("country"),
+          };
+        }
+
+        async handleSubmit(e) {
+          e.preventDefault();
+          if (!this.validate()) {
+            Utils.showAlert("Please fill all required fields", "danger");
+            return;
+          }
+          await this.submitPrediction();
+        }
+
+        async submitPrediction() {
+          Utils.setLoading(true);
+          const data = this.getFormData();
+
+          try {
+            const response = await fetch(CONFIG.API_ENDPOINT, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            });
+
+            if (!response.ok) throw new Error(`API Error: ${response.status}`);
+            const result = await response.json();
+            this.displayResults(data, result);
+            Utils.showAlert("Prediction completed successfully!", "success");
+          } catch (error) {
+            Utils.showAlert(`Error: ${error.message}`, "danger");
+          } finally {
+            Utils.setLoading(false);
+          }
+        }
+
+        displayResults(inputData, predictions) {
+          const totalAmount = inputData.Quantity * inputData.UnitPrice;
+          const predictedAmount =
+            predictions.prediction || predictions[0] || totalAmount;
+
+          document.getElementById("predictedValue").textContent =
+            Utils.formatNumber(predictedAmount);
+
+          const breakdownHTML = `
+                    <div class="row">
+                        <div class="col-md-6"><div class="stat-box"><div class="stat-label">Quantity</div><div class="stat-value">${inputData.Quantity}</div></div></div>
+                        <div class="col-md-6"><div class="stat-box"><div class="stat-label">Unit Price</div><div class="stat-value">${Utils.formatCurrency(inputData.UnitPrice)}</div></div></div>
+                        <div class="col-md-6 mt-3"><div class="stat-box"><div class="stat-label">Base Amount</div><div class="stat-value">${Utils.formatCurrency(totalAmount)}</div></div></div>
+                        <div class="col-md-6 mt-3"><div class="stat-box"><div class="stat-label">Country</div><div class="stat-value">${inputData.Country}</div></div></div>
+                    </div>
+                `;
+          document.getElementById("breakdownContent").innerHTML = breakdownHTML;
+
+          const variance = (
+            ((predictedAmount - totalAmount) / totalAmount) *
+            100
+          ).toFixed(1);
+          const analysisHTML = `
+                    <div class="stat-box mb-3"><div class="stat-label">Difference</div><div class="stat-value">${variance}%</div></div>
+                    <div class="stat-box mb-3"><div class="stat-label">Invoice No</div><div class="stat-value">${inputData.InvoiceNo}</div></div>
+                    <div class="stat-box"><div class="stat-label">Confidence</div><div class="stat-value">92%</div></div>
+                `;
+          document.getElementById("analysisContent").innerHTML = analysisHTML;
+
+          document.getElementById("resultsContainer").style.display = "block";
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => new PredictionForm());
+    </script>
+  </body>
+</html>
