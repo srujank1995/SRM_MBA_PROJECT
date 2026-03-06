@@ -1,0 +1,19 @@
+
+body {
+background:#f4f6f9;
+font-family:'Segoe UI', sans-serif;
+}
+
+.card {
+border-radius:12px;
+}
+
+.card-header {
+font-size:20px;
+font-weight:600;
+}
+
+.alert {
+font-size:20px;
+border-radius:10px;
+}
