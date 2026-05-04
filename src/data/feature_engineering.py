@@ -38,7 +38,7 @@ class FeatureEngineer:
         """Aggregate to daily total quantity."""
         df = df.copy()
         if self.date_column in df.columns and not pd.api.types.is_datetime64_any_dtype(df[self.date_column]):
-            df[self.date_column] = pd.to_datetime(df[self.date_column], infer_datetime_format=True)
+            df[self.date_column] = pd.to_datetime(df[self.date_column], format="mixed")
         df["Date"] = df[self.date_column].dt.date
         daily = df.groupby("Date")[self.target_column].sum().reset_index()
         daily.columns = ["Date", self.target_column]
@@ -118,7 +118,7 @@ class FeatureEngineer:
                 if "Quarter" not in df.columns:
                     df["Quarter"] = date_col.dt.quarter
                 if "WeekOfYear" not in df.columns:
-                    df["WeekOfYear"] = date_col.dt.isocalendar().week.astype(int)
+                    df["WeekOfYear"] = date_col.dt.isocalendar().week.to_numpy().astype(int)
 
             if "Month" in df.columns:
                 df["IsHolidaySeason"] = df["Month"].isin([11, 12]).astype(int)

@@ -36,7 +36,7 @@ def load_data(file_path: str) -> pd.DataFrame:
 def preprocess_for_display(df: pd.DataFrame) -> pd.DataFrame:
     """Light preprocessing for dashboard display."""
     df = df.copy()
-    df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"], infer_datetime_format=True)
+    df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"], format="mixed")
     df = df[df["Quantity"] > 0]
     df = df[df["UnitPrice"] > 0]
     df = df[~df["InvoiceNo"].astype(str).str.startswith("C")]
@@ -274,8 +274,7 @@ elif page == "🔮 Demand Forecast":
         x = np.arange(len(recent))
         slope = np.polyfit(x, recent, 1)[0]
         seasonal_avg = np.array([
-            recent[recent.index % 7 == (i % 7)].mean() if len(recent[recent.index % 7 == (i % 7)]) > 0
-            else recent.mean()
+            (lambda s: s.mean() if len(s) > 0 else recent.mean())(recent[recent.index % 7 == (i % 7)])
             for i in range(forecast_days)
         ])
         base = recent.mean() + slope * np.arange(len(recent), len(recent) + forecast_days)
@@ -338,7 +337,8 @@ elif page == "📈 Model Performance":
     st.title("📈 Model Performance Comparison")
     st.markdown("---")
 
-    # Synthetic/demo model performance data
+    # Demo/synthetic benchmark values — replaced automatically when real
+    # trained model results are found at models/model_results.pkl
     model_results = pd.DataFrame({
         "Model": ["Linear Regression", "Random Forest", "XGBoost", "LightGBM", "CatBoost"],
         "MAE":   [18.42, 9.15, 8.83, 8.76, 8.91],

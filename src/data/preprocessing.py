@@ -37,7 +37,7 @@ class DataPreprocessor:
         """Parse date column to datetime."""
         try:
             df = df.copy()
-            df[self.date_column] = pd.to_datetime(df[self.date_column], infer_datetime_format=True)
+            df[self.date_column] = pd.to_datetime(df[self.date_column], format="mixed")
             logging.info(f"Parsed {self.date_column} as datetime")
             return df
         except Exception as e:
@@ -144,7 +144,7 @@ class DataPreprocessor:
             df["DayOfWeek"] = dt.dt.dayofweek
             df["Hour"] = dt.dt.hour
             df["Quarter"] = dt.dt.quarter
-            df["WeekOfYear"] = dt.dt.isocalendar().week.astype(int)
+            df["WeekOfYear"] = dt.dt.isocalendar().week.to_numpy().astype(int)
             df["IsWeekend"] = (dt.dt.dayofweek >= 5).astype(int)
             logging.info("Extracted date features")
             return df
