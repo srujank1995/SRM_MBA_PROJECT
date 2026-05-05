@@ -216,3 +216,13 @@ catboost_info/
 # Ignore log files
 logs/
 *.log
+
+# Ignore artifacts folder
+artifacts/
+
+# Ignore CatBoost training logs
+catboost_info/
+
+# Ignore log files
+logs/
+*.log
