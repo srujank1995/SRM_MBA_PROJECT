@@ -144,7 +144,7 @@ The prediction represents the expected average quantity for an order placed from
 <li class="mb-2">Your selected country is encoded using the trained <strong>OneHotEncoder</strong> preprocessor.</li>
 <li class="mb-2">The encoded input is passed to the deployed <strong>best ML model</strong> (selected from RandomForest, LinearRegression, CatBoost based on R² score).</li>
 <li class="mb-2">The model outputs the predicted <strong>average demand quantity</strong> for that country.</li>
-<li>The result reflects historical demand patterns learned from <strong>541,909 transactions</strong>.</li>
+<li>The result reflects historical demand patterns learned from <strong>{{ "{:,}".format(total_transactions) }}</strong> transactions.</li>
 </ol>
 </div>
 </div>

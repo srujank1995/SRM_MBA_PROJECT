@@ -1,17 +1,19 @@
 from flask import Flask, request, render_template
 import pandas as pd
 from src.pipeline.predict_pipeline import PredictPipeline
-from src.utils import load_object, evaluate_models
+from src.utils import load_object
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 from catboost import CatBoostRegressor
+from sklearn.metrics import r2_score
 
 app = Flask(__name__)
 
-# Load dataset to populate dropdown
+# Load dataset once at startup to populate dropdown and get total count
 df = pd.read_csv("notebook/data/data.csv", encoding="latin1")
 
 countries = sorted(df["Country"].dropna().unique())
+total_transactions = len(df)
 
 
 def _get_dashboard_data():
@@ -36,8 +38,13 @@ def _get_dashboard_data():
         "CatBoost":           CatBoostRegressor(verbose=False),
     }
 
-    report_test  = evaluate_models(X_train_arr, y_train, X_test_arr,  y_test,  models)
-    report_train = evaluate_models(X_train_arr, y_train, X_train_arr, y_train, models)
+    # Fit each model once; score on both train and test sets.
+    report_train = {}
+    report_test  = {}
+    for name, model in models.items():
+        model.fit(X_train_arr, y_train)
+        report_train[name] = r2_score(y_train, model.predict(X_train_arr))
+        report_test[name]  = r2_score(y_test,  model.predict(X_test_arr))
 
     best_name = max(report_test, key=report_test.get)
 
@@ -50,7 +57,7 @@ def _get_dashboard_data():
             "is_best":     name == best_name,
         })
 
-    # Sort: best model first, then by descending test R²
+    # Sort: deployed best model first, then remaining models by descending test R².
     model_rows.sort(key=lambda x: (not x["is_best"], -x["test_score"]))
 
     # Per-country stats from training data
@@ -66,9 +73,9 @@ def _get_dashboard_data():
     country_stats = by_country.to_dict(orient="records")
 
     summary = {
-        "total_rows":   len(train),
-        "countries":    train["Country"].nunique(),
-        "avg_quantity": float(train["Quantity"].mean()),
+        "total_rows":     len(train),
+        "countries":      train["Country"].nunique(),
+        "avg_quantity":   float(train["Quantity"].mean()),
         "total_quantity": int(train["Quantity"].sum()),
     }
 
@@ -113,6 +120,7 @@ def predict():
         countries=countries,
         results=results,
         selected_country=selected_country,
+        total_transactions=total_transactions,
     )
 
 
