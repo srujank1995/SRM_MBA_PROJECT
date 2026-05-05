@@ -4,30 +4,151 @@ background-color: #f4f6f9;
 font-family: 'Segoe UI', sans-serif;
 }
 
+/* ── Navbar ── */
+.navbar {
+box-shadow: 0 2px 8px rgba(0,0,0,.35);
+}
+
+/* ── Hero ── */
 .hero-section {
-background: linear-gradient(135deg,#0d6efd,#6610f2);
-color:white;
-padding:120px 0;
+background: linear-gradient(135deg, #0d6efd, #6610f2);
+color: white;
+padding: 120px 0 100px;
 }
 
 .hero-section h1 {
-font-size:48px;
+font-size: 48px;
 }
 
+/* ── Section headings ── */
+.section-heading h2 {
+font-size: 2rem;
+}
+
+/* ── Cards ── */
 .card {
-border:none;
-border-radius:12px;
-transition:0.3s;
+border: none;
+border-radius: 12px;
+transition: 0.3s;
 }
 
 .card:hover {
-transform:translateY(-5px);
-box-shadow:0px 10px 25px rgba(0,0,0,0.1);
+transform: translateY(-5px);
+box-shadow: 0px 10px 25px rgba(0,0,0,.12);
 }
 
+.overview-card {
+border-left: 4px solid #0d6efd;
+}
+
+.feature-card {
+transition: 0.3s;
+}
+
+/* ── Icon boxes ── */
+.icon-box {
+width: 48px;
+height: 48px;
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+}
+
+.bg-primary-soft { background: rgba(13,110,253,.12); }
+.bg-success-soft { background: rgba(25,135, 84,.12); }
+.bg-warning-soft { background: rgba(255,193,  7,.12); }
+.bg-info-soft    { background: rgba( 13,202,240,.12); }
+
+/* ── Pipeline steps ── */
+.pipeline-steps {
+display: flex;
+flex-direction: column;
+gap: 2px;
+}
+
+.pipeline-step {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 6px 10px;
+background: #f8f9fa;
+border-radius: 8px;
+font-size: 0.88rem;
+color: #444;
+}
+
+.pipeline-arrow {
+text-align: center;
+line-height: 1;
+}
+
+.step-badge {
+background: #0d6efd;
+color: white;
+border-radius: 50%;
+width: 22px;
+height: 22px;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+font-size: 0.75rem;
+font-weight: 700;
+flex-shrink: 0;
+}
+
+/* ── Stats section ── */
+.stats-section {
+background: linear-gradient(135deg, #0d6efd, #6610f2);
+padding: 60px 0;
+}
+
+.stat-card {
+color: white;
+}
+
+.stat-number {
+font-size: 2.8rem;
+font-weight: 800;
+line-height: 1;
+}
+
+.stat-label {
+font-size: 0.95rem;
+opacity: 0.85;
+margin-top: 6px;
+}
+
+/* ── Tech badges ── */
+.tech-badge {
+background: white;
+border-radius: 12px;
+padding: 16px 8px;
+box-shadow: 0 2px 10px rgba(0,0,0,.07);
+transition: 0.3s;
+}
+
+.tech-badge:hover {
+transform: translateY(-4px);
+box-shadow: 0 6px 20px rgba(0,0,0,.12);
+}
+
+/* ── Footer ── */
 .footer {
-background:#111;
-color:white;
-padding:20px;
-margin-top:80px;
+background: #111;
+color: white;
+padding: 28px 0;
+margin-top: 80px;
+}
+
+.footer-link {
+color: rgba(255,255,255,.6);
+text-decoration: none;
+font-size: 0.9rem;
+transition: color 0.2s;
+}
+
+.footer-link:hover {
+color: white;
 }
