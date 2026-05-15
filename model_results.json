@@ -1,0 +1,56 @@
+{
+    "Random Forest": {
+        "MAE": 9.04,
+        "RMSE": 39.53,
+        "R2_Score": 0.1962,
+        "MAPE": 184.53,
+        "CV_Score": -1.3074,
+        "Train_Size": 40000,
+        "Test_Size": 10000
+    },
+    "XGBoost": {
+        "MAE": 9.41,
+        "RMSE": 36.34,
+        "R2_Score": 0.321,
+        "MAPE": 216.32,
+        "CV_Score": -0.3848,
+        "Train_Size": 40000,
+        "Test_Size": 10000
+    },
+    "Gradient Boosting": {
+        "MAE": 9.73,
+        "RMSE": 39.29,
+        "R2_Score": 0.2062,
+        "MAPE": 238.74,
+        "CV_Score": -0.7125,
+        "Train_Size": 40000,
+        "Test_Size": 10000
+    },
+    "Ridge Regression": {
+        "MAE": 13.87,
+        "RMSE": 43.97,
+        "R2_Score": 0.0055,
+        "MAPE": 407.98,
+        "CV_Score": -0.007,
+        "Train_Size": 40000,
+        "Test_Size": 10000
+    },
+    "Linear Regression": {
+        "MAE": 13.87,
+        "RMSE": 43.97,
+        "R2_Score": 0.0055,
+        "MAPE": 407.98,
+        "CV_Score": -0.007,
+        "Train_Size": 40000,
+        "Test_Size": 10000
+    },
+    "Neural Network": {
+        "MAE": 12.18,
+        "RMSE": 43.55,
+        "R2_Score": 0.0246,
+        "MAPE": 304.44,
+        "CV_Score": 0.0148,
+        "Train_Size": 40000,
+        "Test_Size": 10000
+    }
+}
